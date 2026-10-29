@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR" class="intro-on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Santa Grelha · Vila Mariana</title>
+<meta name="description" content="Santa Grelha, Vila Mariana. Almoço no local e marmita no delivery de dia, espeto na brasa, lanche de pernil e cerveja gelada no fim da tarde. R. Joel Jorge de Melo, 757.">
+<meta name="theme-color" content="#0b0705">
+<meta property="og:title" content="Santa Grelha · Vila Mariana">
+<meta property="og:description" content="Almoço de dia, brasa no fim da tarde. R. Joel Jorge de Melo, 757, Vila Mariana.">
+<meta property="og:image" content="img/logo.png">
+<link rel="icon" href="img/flame.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<!-- INTRO: a fagulha acende a chama -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-spark"></div>
+  <img class="intro-flame" src="img/flame.png" alt="">
+  <img class="intro-logo" src="img/logo.png" alt="">
+  <button class="intro-skip" type="button">pular</button>
+</div>
+
+<header class="hd" id="hd">
+  <a class="hd-brand" href="#topo" aria-label="Santa Grelha, início">
+    <img src="img/flame.png" alt="" width="22" height="28">
+    <span>Santa Grelha</span>
+  </a>
+  <nav class="hd-nav" id="nav">
+    <a href="#turnos">Dia e noite</a>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#fotos">Fotos</a>
+    <a href="#onde">Onde fica</a>
+  </nav>
+  <a class="hd-cta" href="https://wa.me/5511971542024?text=Oi%2C%20Santa%20Grelha!" target="_blank" rel="noopener">WhatsApp</a>
+  <button class="hd-burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-bg">
+    <img src="img/chapa.jpg" alt="Chapa do Santa Grelha com pernil na grelha" class="hero-img">
+  </div>
+  <canvas class="embers" id="embers"></canvas>
+  <div class="hero-coals"></div>
+  <div class="hero-in">
+    <img class="hero-logo" src="img/logo.png" alt="Santa Grelha, Vila Mariana" width="1048" height="932">
+    <p class="hero-sub">Almoço caprichado de dia. Brasa, lanche de pernil e cerveja gelada no fim da tarde.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-fire" href="#cardapio">Montar meu pedido</a>
+      <a class="btn btn-ghost" href="https://www.ifood.com.br/delivery/sao-paulo-sp/santa-grelha-sp-vila-mariana/5ea048c7-dbc5-4cec-815c-44e77e2e6010" target="_blank" rel="noopener">Marmita no iFood</a>
+    </div>
+  </div>
+  <div class="hero-status" id="status"><i></i><span>Vila Mariana, São Paulo</span></div>
+  <a class="hero-cue" href="#turnos" aria-label="Rolar"><span></span></a>
+</section>
+
+<!-- DIA → NOITE -->
+<section class="turnos" id="turnos">
+  <div class="turnos-stage">
+    <div class="sky"></div>
+    <div class="orb" aria-hidden="true"><img src="img/flame.png" alt=""></div>
+    <div class="turnos-clock" aria-hidden="true"><b id="clock">10:30</b></div>
+
+    <div class="turno turno-dia">
+      <p class="tag">de dia</p>
+      <h2>Almoço no local<br>e marmita<br>no delivery.</h2>
+      <p class="turno-txt">Prato feito na hora pra quem trabalha e mora na Vila Mariana. Senta e almoça com calma ou pede pra chegar quentinho.</p>
+      <p class="turno-hr">Seg a sáb · 10h30 às 16h</p>
+      <div class="turno-pics">
+        <img src="img/chapa.jpg" alt="Pernil na chapa" loading="lazy">
+        <img src="img/combo.jpg" alt="Burguer com fritas" loading="lazy">
+      </div>
+    </div>
+
+    <div class="turno turno-noite">
+      <p class="tag">no fim da tarde</p>
+      <h2>Espeto na brasa,<br>cerveja gelada<br>e drink bom.</h2>
+      <p class="turno-txt">O balcão acende, o espeto vai pra grelha e o lanche de pernil sai quente. Ambiente descontraído, do jeito que a vizinhança gosta.</p>
+      <p class="turno-hr">Ter a sáb · 17h às 23h</p>
+      <div class="turno-pics">
+        <img src="img/gin.jpg" alt="Gin tônica no balcão" loading="lazy">
+        <img src="img/espeto.jpg" alt="Espetos com farofa" loading="lazy">
+      </div>
+    </div>
+
+    <div class="turnos-bar" aria-hidden="true"><i id="turnosBar"></i><span>dia</span><span>noite</span></div>
+  </div>
+</section>
+
+<!-- FAIXA -->
+<div class="band" aria-hidden="true">
+  <div class="band-track">
+    <span>Marmitas</span><b>✦</b><span>Almoço no local</span><b>✦</b><span>Lanche de pernil</span><b>✦</b><span>Espeto na brasa</span><b>✦</b><span>Cerveja gelada</span><b>✦</b><span>Drinks</span><b>✦</b>
+    <span>Marmitas</span><b>✦</b><span>Almoço no local</span><b>✦</b><span>Lanche de pernil</span><b>✦</b><span>Espeto na brasa</span><b>✦</b><span>Cerveja gelada</span><b>✦</b><span>Drinks</span><b>✦</b>
+  </div>
+</div>
+
+<!-- CARDÁPIO + COMANDA -->
+<section class="menu" id="cardapio">
+  <div class="menu-head">
+    <p class="tag">cardápio</p>
+    <h2>Escolhe aí.<br><em>A gente acende a grelha.</em></h2>
+    <p class="menu-note">Toca no <b>+</b> pra jogar na comanda. No fim, ela vai inteirinha pro nosso WhatsApp.</p>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-list">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <ul class="items" id="items"></ul>
+      <p class="menu-foot">Preços do nosso cardápio online, podem mudar. Marmita do dia e bebidas é só perguntar no WhatsApp.</p>
+    </div>
+
+    <aside class="comanda" id="comanda" aria-label="Sua comanda">
+      <div class="comanda-paper">
+        <div class="comanda-top">
+          <img src="img/flame.png" alt="">
+          <div><b>Comanda</b><small>Santa Grelha · Vila Mariana</small></div>
+          <span class="comanda-n" id="cmdN">nº 001</span>
+        </div>
+        <ul class="comanda-list" id="cmdList"><li class="empty">Tá vazia ainda. Escolhe um lanche ali do lado.</li></ul>
+        <div class="comanda-opts">
+          <label><input type="radio" name="modo" value="Entrega" checked> Entrega</label>
+          <label><input type="radio" name="modo" value="Retirada"> Retiro aí</label>
+          <label><input type="radio" name="modo" value="Mesa"> Vou comer aí</label>
+        </div>
+        <div class="comanda-total"><span>Total</span><b id="cmdTotal">R$ 0,00</b></div>
+        <a class="btn btn-fire btn-block" id="cmdSend" href="#" aria-disabled="true">Mandar no WhatsApp</a>
+        <button class="comanda-clear" id="cmdClear" type="button">limpar comanda</button>
+      </div>
+    </aside>
+  </div>
+
+  <button class="comanda-fab" id="fab" type="button" aria-controls="comanda"><span id="fabN">0</span> na comanda · <b id="fabT">R$ 0,00</b></button>
+</section>
+
+<!-- FOTOS -->
+<section class="fotos" id="fotos">
+  <div class="fotos-pin">
+    <div class="fotos-head">
+      <p class="tag">na grelha</p>
+      <h2>Do balcão<br>pra mesa.</h2>
+      <p class="fotos-hint">rola pra ver <span>→</span></p>
+    </div>
+    <div class="fotos-track" id="fotosTrack">
+      <figure class="f-tall"><img src="img/burger-g.jpg" alt="Burguer da casa" loading="lazy"><figcaption>Burguer da casa, pão de brioche</figcaption></figure>
+      <figure class="f-wide"><img src="img/bar.jpg" alt="Prateleira de destilados iluminada" loading="lazy"><figcaption>O balcão aceso</figcaption></figure>
+      <figure class="f-tall"><img src="img/caipi.jpg" alt="Caipirinha de limão no balcão" loading="lazy"><figcaption>Caipirinha no capricho</figcaption></figure>
+      <figure class="f-wide"><img src="img/chapa.jpg" alt="Pernil desfiado na chapa" loading="lazy"><figcaption>Pernil na chapa, direto pro pão francês</figcaption></figure>
+      <figure class="f-tall"><img src="img/espeto.jpg" alt="Espetos com farofa e vinagrete" loading="lazy"><figcaption>Espeto com farofa e vinagrete</figcaption></figure>
+      <figure class="f-wide"><img src="img/veg.jpg" alt="Santa Veg, burguer de berinjela com rúcula" loading="lazy"><figcaption>Santa Veg, de berinjela</figcaption></figure>
+      <figure class="f-tall"><img src="img/gin.jpg" alt="Gin tônica" loading="lazy"><figcaption>Gin gelado no fim da tarde</figcaption></figure>
+      <figure class="f-sq"><img src="img/combo.jpg" alt="Combo com batata frita" loading="lazy"><figcaption>Combo com fritas</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- COMENTÁRIOS -->
+<section class="voz">
+  <p class="tag">quem passou por aqui</p>
+  <div class="voz-quotes" id="quotes">
+    <blockquote class="on">“O lanche de pernil é maravilhoso e o clima do bar é ótimo.”</blockquote>
+    <blockquote>“Ambiente gostoso e descontraído, comida muito boa.”</blockquote>
+    <blockquote>“Ambiente agradável, comida boa, cerveja gelada e drinks gostosinhos.”</blockquote>
+  </div>
+  <p class="voz-src">comentários do Google</p>
+  <div class="voz-dots" id="qdots"><button class="on" aria-label="Comentário 1"></button><button aria-label="Comentário 2"></button><button aria-label="Comentário 3"></button></div>
+</section>
+
+<!-- ONDE -->
+<section class="onde" id="onde">
+  <div class="onde-info">
+    <p class="tag">onde fica</p>
+    <h2>R. Joel Jorge<br>de Melo, 757</h2>
+    <p class="onde-bairro">Vila Mariana, São Paulo · 04128-081</p>
+
+    <dl class="hrs" id="hrs">
+      <div data-d="1"><dt>Segunda</dt><dd>10h30 às 16h</dd></div>
+      <div data-d="2"><dt>Terça</dt><dd>10h30 às 16h · 17h às 23h</dd></div>
+      <div data-d="3"><dt>Quarta</dt><dd>10h30 às 16h · 17h às 23h</dd></div>
+      <div data-d="4"><dt>Quinta</dt><dd>10h30 às 16h · 17h às 23h</dd></div>
+      <div data-d="5"><dt>Sexta</dt><dd>10h30 às 16h · 17h às 23h</dd></div>
+      <div data-d="6"><dt>Sábado</dt><dd>10h30 às 16h · 17h às 23h</dd></div>
+      <div data-d="0"><dt>Domingo</dt><dd>Fechado</dd></div>
+    </dl>
+
+    <div class="onde-ctas">
+      <a class="btn btn-fire" href="https://www.google.com/maps/dir/?api=1&destination=Santa+Grelha+R.+Joel+Jorge+de+Melo+757+Vila+Mariana+S%C3%A3o+Paulo" target="_blank" rel="noopener">Como chegar</a>
+      <a class="btn btn-ghost" href="tel:+5511971542024">(11) 97154-2024</a>
+    </div>
+  </div>
+  <div class="onde-map">
+    <iframe title="Mapa do Santa Grelha" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Santa%20Grelha%2C%20R.%20Joel%20Jorge%20de%20Melo%2C%20757%2C%20Vila%20Mariana%2C%20S%C3%A3o%20Paulo&z=16&output=embed"></iframe>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <canvas class="embers embers-ft" id="embersFt"></canvas>
+  <img class="ft-logo" src="img/logo.png" alt="Santa Grelha, Vila Mariana" loading="lazy">
+  <div class="ft-links">
+    <a href="https://wa.me/5511971542024?text=Oi%2C%20Santa%20Grelha!" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/santa-grelha-sp-vila-mariana/5ea048c7-dbc5-4cec-815c-44e77e2e6010" target="_blank" rel="noopener">iFood</a>
+    <a href="https://pedido.anota.ai/loja/santa-grelha-sp" target="_blank" rel="noopener">Cardápio online</a>
+  </div>
+  <p class="ft-small">Santa Grelha · R. Joel Jorge de Melo, 757, Vila Mariana, São Paulo</p>
+</footer>
+
+<script src="main.js?v=2"></script>
+</body>
+</html>
