@@ -1,13 +1,8 @@
 (() => {
-  const WA = '5511971542024';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const brl = n => 'R$ ' + n.toFixed(2).replace('.', ',');
-  const store = {
-    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
-  };
 
   /* ---------- INTRO ---------- */
   const html = document.documentElement;
@@ -121,7 +116,7 @@
   status();
   setInterval(status, 60000);
 
-  /* ---------- MENU + COMANDA ---------- */
+  /* ---------- CARDÁPIO ---------- */
   const MENU = [
     { id: 'lanches', nome: 'Lanches de pernil', itens: [
       ['pernil-paulista', 'Pernil Paulista', 'Pão francês, pernil suíno, cebola, tomate e pimentão.', 29],
@@ -165,12 +160,8 @@
     ]}
   ];
   const HAS_IMG = new Set(['batata','batata-especial','polenta','nuggets','pernil-paulista','pernil-carioca','pernil-mineiro','linguica-paulista','linguica-mineira','linguica-caipira','santa-burguer','grelha-burguer','burguer-simples','x-burguer','x-egg','x-salada','x-bacon','x-bacon-salada','mega-grelha','santa-veg','esp-carne','esp-frango','esp-linguica','esp-coracao','esp-pao-alho','esp-coalho']);
-  const ITEMS = {};
-  MENU.forEach(c => c.itens.forEach(([id, nome, desc, preco]) => ITEMS[id] = { id, nome, desc, preco }));
 
   const tabs = $('#tabs'), list = $('#items');
-  let cart = store.get('sg-cart') || {};
-  Object.keys(cart).forEach(k => { if (!ITEMS[k]) delete cart[k]; });
 
   MENU.forEach((c, i) => {
     const b = document.createElement('button');
@@ -187,78 +178,13 @@
       <li class="item" style="animation-delay:${k * 45}ms">
         ${HAS_IMG.has(iid) ? `<img src="img/m/${iid}.webp" alt="${nome}" loading="lazy" width="76" height="76">` : `<span class="noimg"><img src="img/flame.png" alt=""></span>`}
         <div><h3>${nome}</h3>${desc ? `<p>${desc}</p>` : ''}<div class="pr">${brl(preco)}</div></div>
-        <button class="add" type="button" data-id="${iid}" aria-label="Adicionar ${nome}">+${cart[iid] ? `<span class="q">${cart[iid]}</span>` : ''}</button>
       </li>`).join('');
   }
-  list.addEventListener('click', e => {
-    const b = e.target.closest('.add'); if (!b) return;
-    change(b.dataset.id, 1);
-    flyEmber(b);
-  });
-
-  const cmdList = $('#cmdList'), cmd = $('#comanda'), fab = $('#fab');
-  function change(id, d) {
-    cart[id] = (cart[id] || 0) + d;
-    if (cart[id] <= 0) delete cart[id];
-    store.set('sg-cart', cart);
-    renderCart();
-    const btn = $(`.add[data-id="${id}"]`, list);
-    if (btn) btn.innerHTML = '+' + (cart[id] ? `<span class="q">${cart[id]}</span>` : '');
-    if (d > 0) { cmd.classList.remove('bump'); void cmd.offsetWidth; cmd.classList.add('bump'); }
-  }
-  function renderCart() {
-    const ids = Object.keys(cart);
-    const total = ids.reduce((s, k) => s + ITEMS[k].preco * cart[k], 0);
-    const count = ids.reduce((s, k) => s + cart[k], 0);
-    cmdList.innerHTML = ids.length ? ids.map(k => `
-      <li><span class="qty"><button type="button" data-d="-1" data-id="${k}" aria-label="Tirar um">−</button><span>${cart[k]}</span><button type="button" data-d="1" data-id="${k}" aria-label="Mais um">+</button></span>
-      <span class="nm">${ITEMS[k].nome}</span><span class="vl">${brl(ITEMS[k].preco * cart[k])}</span></li>`).join('')
-      : '<li class="empty">Tá vazia ainda. Escolhe um lanche ali do lado.</li>';
-    $('#cmdTotal').textContent = brl(total);
-    $('#fabN').textContent = count;
-    $('#fabT').textContent = brl(total);
-    fab.classList.toggle('show', count > 0);
-    const send = $('#cmdSend');
-    send.setAttribute('aria-disabled', count === 0);
-    send.href = count ? waLink(ids, total) : '#';
-  }
-  function waLink(ids, total) {
-    const modo = ($('input[name=modo]:checked') || {}).value || 'Entrega';
-    const linhas = ids.map(k => `${cart[k]}x ${ITEMS[k].nome} (${brl(ITEMS[k].preco * cart[k])})`);
-    let msg = `Oi, Santa Grelha! Montei minha comanda pelo site:\n\n${linhas.join('\n')}\n\nTotal: ${brl(total)}\nModo: ${modo}`;
-    if (modo === 'Entrega') msg += '\nEndereço: ';
-    msg += '\nNome: ';
-    return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
-  }
-  cmdList.addEventListener('click', e => {
-    const b = e.target.closest('button[data-id]'); if (b) change(b.dataset.id, +b.dataset.d);
-  });
-  $$('input[name=modo]').forEach(r => r.addEventListener('change', renderCart));
-  $('#cmdClear').addEventListener('click', () => { cart = {}; store.set('sg-cart', cart); renderCart(); renderCat($('button[aria-selected=true]', tabs).dataset.cat); });
-  fab.addEventListener('click', () => { cmd.classList.add('open'); fab.classList.add('hidden'); });
-  document.addEventListener('click', e => {
-    if (cmd.classList.contains('open') && !cmd.contains(e.target) && !fab.contains(e.target) && !e.target.closest('.add')) { cmd.classList.remove('open'); fab.classList.remove('hidden'); }
-  });
-  const n = (store.get('sg-n') || 0) + 1; store.set('sg-n', n);
-  $('#cmdN').textContent = 'nº ' + String(n).padStart(3, '0');
   renderCat(MENU[0].id);
-  renderCart();
 
-  // fagulha voando do botão até a comanda
-  function flyEmber(from) {
-    if (reduce) return;
-    const target = getComputedStyle(fab).display !== 'none' ? fab : $('#cmdTotal');
-    const a = from.getBoundingClientRect(), b = target.getBoundingClientRect();
-    const s = document.createElement('i');
-    s.style.cssText = `position:fixed;z-index:80;left:${a.left + a.width / 2 - 5}px;top:${a.top + a.height / 2 - 5}px;width:10px;height:10px;border-radius:50%;background:#ffd36b;box-shadow:0 0 14px 4px #f9a801;pointer-events:none`;
-    document.body.appendChild(s);
-    const dx = b.left + b.width / 2 - a.left - a.width / 2, dy = b.top + b.height / 2 - a.top - a.height / 2;
-    s.animate([
-      { transform: 'translate(0,0) scale(1)', opacity: 1 },
-      { transform: `translate(${dx * .5}px,${dy * .5 - 80}px) scale(1.3)`, opacity: 1, offset: .5 },
-      { transform: `translate(${dx}px,${dy}px) scale(.4)`, opacity: .2 }
-    ], { duration: 650, easing: 'cubic-bezier(.4,0,.2,1)' }).onfinish = () => s.remove();
-  }
+  // o balão do WhatsApp se apresenta uma vez, depois vira só o ícone
+  const wa = $('.wa-float');
+  setTimeout(() => { wa.classList.add('peek'); setTimeout(() => wa.classList.remove('peek'), 4000); }, html.classList.contains('intro-on') ? 4200 : 1200);
 
   /* ---------- HEADER / NAV ---------- */
   const hd = $('#hd'), burger = $('#burger');
@@ -304,7 +230,7 @@
 
     // header
     hd.classList.toggle('solid', y > 40);
-    hd.classList.toggle('hide', y > lastY && y > vh * .8 && !hd.classList.contains('open') && !cmd.classList.contains('open'));
+    hd.classList.toggle('hide', y > lastY && y > vh * .8 && !hd.classList.contains('open'));
     lastY = y;
 
     // hero parallax

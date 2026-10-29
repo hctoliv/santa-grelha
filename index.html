@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -53,7 +53,7 @@
     <img class="hero-logo" src="img/logo.png" alt="Santa Grelha, Vila Mariana" width="1048" height="932">
     <p class="hero-sub">Almoço caprichado de dia. Brasa, lanche de pernil e cerveja gelada no fim da tarde.</p>
     <div class="hero-ctas">
-      <a class="btn btn-fire" href="#cardapio">Montar meu pedido</a>
+      <a class="btn btn-fire" href="#cardapio">Ver o cardápio</a>
       <a class="btn btn-ghost" href="https://www.ifood.com.br/delivery/sao-paulo-sp/santa-grelha-sp-vila-mariana/5ea048c7-dbc5-4cec-815c-44e77e2e6010" target="_blank" rel="noopener">Marmita no iFood</a>
     </div>
   </div>
@@ -106,38 +106,19 @@
 <section class="menu" id="cardapio">
   <div class="menu-head">
     <p class="tag">cardápio</p>
-    <h2>Escolhe aí.<br><em>A gente acende a grelha.</em></h2>
-    <p class="menu-note">Toca no <b>+</b> pra jogar na comanda. No fim, ela vai inteirinha pro nosso WhatsApp.</p>
+    <h2>O que sai<br><em>da nossa grelha.</em></h2>
+    <p class="menu-note">Lanche de pernil no pão francês, burguer no brioche, espeto na brasa e porção pra dividir.</p>
   </div>
 
-  <div class="menu-grid">
+  <div class="menu-grid menu-solo">
     <div class="menu-list">
       <div class="tabs" role="tablist" id="tabs"></div>
       <ul class="items" id="items"></ul>
       <p class="menu-foot">Preços do nosso cardápio online, podem mudar. Marmita do dia e bebidas é só perguntar no WhatsApp.</p>
     </div>
 
-    <aside class="comanda" id="comanda" aria-label="Sua comanda">
-      <div class="comanda-paper">
-        <div class="comanda-top">
-          <img src="img/flame.png" alt="">
-          <div><b>Comanda</b><small>Santa Grelha · Vila Mariana</small></div>
-          <span class="comanda-n" id="cmdN">nº 001</span>
-        </div>
-        <ul class="comanda-list" id="cmdList"><li class="empty">Tá vazia ainda. Escolhe um lanche ali do lado.</li></ul>
-        <div class="comanda-opts">
-          <label><input type="radio" name="modo" value="Entrega" checked> Entrega</label>
-          <label><input type="radio" name="modo" value="Retirada"> Retiro aí</label>
-          <label><input type="radio" name="modo" value="Mesa"> Vou comer aí</label>
-        </div>
-        <div class="comanda-total"><span>Total</span><b id="cmdTotal">R$ 0,00</b></div>
-        <a class="btn btn-fire btn-block" id="cmdSend" href="#" aria-disabled="true">Mandar no WhatsApp</a>
-        <button class="comanda-clear" id="cmdClear" type="button">limpar comanda</button>
-      </div>
-    </aside>
   </div>
 
-  <button class="comanda-fab" id="fab" type="button" aria-controls="comanda"><span id="fabN">0</span> na comanda · <b id="fabT">R$ 0,00</b></button>
 </section>
 
 <!-- FOTOS -->
@@ -202,6 +183,11 @@
 
 </main>
 
+<a class="wa-float" href="https://wa.me/5511971542024?text=Oi%2C%20Santa%20Grelha!%20Tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener" aria-label="Tirar dúvida no WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.33.68 4.6 1.95 6.54L4 29l7.7-2.01a12.1 12.1 0 0 0 4.34.8h.01C22.68 27.79 28 22.43 28 15.82 28 9.2 22.68 3 16.04 3Zm0 22.6h-.01c-1.4 0-2.77-.37-3.97-1.08l-.29-.17-4.57 1.19 1.22-4.44-.19-.3a9.86 9.86 0 0 1-1.52-5.26c0-5.47 4.47-9.92 9.97-9.92 5.48 0 9.94 4.45 9.94 10.2 0 5.33-4.46 9.78-9.58 9.78Zm5.45-7.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.48.71.31 1.27.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+  <span>Dúvidas? Chama a gente</span>
+</a>
+
 <footer class="ft">
   <canvas class="embers embers-ft" id="embersFt"></canvas>
   <img class="ft-logo" src="img/logo.png" alt="Santa Grelha, Vila Mariana" loading="lazy">
@@ -213,6 +199,6 @@
   <p class="ft-small">Santa Grelha · R. Joel Jorge de Melo, 757, Vila Mariana, São Paulo</p>
 </footer>
 
-<script src="main.js?v=2"></script>
+<script src="main.js?v=3"></script>
 </body>
 </html>
